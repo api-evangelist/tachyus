@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: Tachapps Production Data Wells API
+  version: v1
+  description: REST API for the Tachyus Tachapps platform (Strateon, Aqueon, Aurion) — reservoir management, production analytics, and forecasting. The API is organized around Projects, Wells, and Production Data. All requests use HTTPS and JSON. Authentication is a Bearer API token issued from the Tachapps UI (Settings -> API Tokens). Breaking changes are introduced only in new major versions with advance notice.
+  contact:
+    name: Tachyus
+    email: info@tachyus.com
+    url: https://docs.tachyus.com/
+servers:
+- url: https://{organization}.tachyus.com/api/v1
+  description: Per-organization production host
+  variables:
+    organization:
+      default: your-organization
+      description: Your Tachapps organization subdomain
+security:
+- bearerAuth: []
+tags:
+- name: Wells
+  description: Wells belong to projects.
+paths:
+  /projects/{projectId}/wells:
+    parameters:
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listWells
+      tags:
+      - Wells
+      summary: List wells in a project
+      parameters:
+      - name: limit
+        in: query
+        description: 'Max results per page (default: 100)'
+        schema:
+          type: integer
+          default: 100
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Filter by type
+        schema:
+          type: string
+          enum:
+          - producer
+          - injector
+          - observer
+          - swd
+      - name: status
+        in: query
+        description: Filter by status
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - shut_in
+      - name: search
+        in: query
+        description: Search by well name or API number
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of wells
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Well'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createWell
+      tags:
+      - Wells
+      summary: Create a well
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WellInput'
+      responses:
+        '201':
+          description: Well created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Well'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /projects/{projectId}/wells/{wellId}:
+    parameters:
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: wellId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getWell
+      tags:
+      - Wells
+      summary: Get a well by ID
+      responses:
+        '200':
+          description: Well object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Well'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    patch:
+      operationId: updateWell
+      tags:
+      - Wells
+      summary: Update well attributes
+      description: Update well attributes. Only included fields are modified.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WellInput'
+      responses:
+        '200':
+          description: Updated well object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Well'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    delete:
+      operationId: deleteWell
+      tags:
+      - Wells
+      summary: Delete a well
+      description: Deletes the well and all associated production data. This action cannot be undone.
+      responses:
+        '204':
+          description: Well deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    Forbidden:
+      description: Token lacks required scope
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    WellInput:
+      type: object
+      properties:
+        name:
+          type: string
+        apiNumber:
+          type: string
+        type:
+          type: string
+          enum:
+          - producer
+          - injector
+          - observer
+          - swd
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - shut_in
+        latitude:
+          type: number
+        longitude:
+          type: number
+        spudDate:
+          type: string
+          format: date
+        lateralLength:
+          type: number
+        perfInterval:
+          type: object
+          properties:
+            topMd:
+              type: number
+            bottomMd:
+              type: number
+    Well:
+      allOf:
+      - $ref: '#/components/schemas/WellInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          projectId:
+            type: string
+          firstProductionDate:
+            type: string
+            format: date
+          createdAt:
+            type: string
+            format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            requestId:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token issued from the Tachapps UI (Settings -> API Tokens), sent as `Authorization: Bearer tach_live_...`. Tokens carry scopes (read:projects, read:wells, read:production, write:projects, write:wells, admin).'
+x-apievangelist:
+  generated: '2026-07-21'
+  method: generated
+  source: Faithfully transcribed from the published Tachapps API reference at https://docs.tachyus.com/api/ (introduction, authentication, projects, wells, production-data). No fields invented; only documented operations, parameters, and response fields are represented.

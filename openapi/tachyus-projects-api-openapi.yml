@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Tachapps Production Data Projects API
+  version: v1
+  description: REST API for the Tachyus Tachapps platform (Strateon, Aqueon, Aurion) — reservoir management, production analytics, and forecasting. The API is organized around Projects, Wells, and Production Data. All requests use HTTPS and JSON. Authentication is a Bearer API token issued from the Tachapps UI (Settings -> API Tokens). Breaking changes are introduced only in new major versions with advance notice.
+  contact:
+    name: Tachyus
+    email: info@tachyus.com
+    url: https://docs.tachyus.com/
+servers:
+- url: https://{organization}.tachyus.com/api/v1
+  description: Per-organization production host
+  variables:
+    organization:
+      default: your-organization
+      description: Your Tachapps organization subdomain
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: Projects map to a specific geographic or operational asset.
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      tags:
+      - Projects
+      summary: List projects
+      description: Returns a paginated list of projects the authenticated user has access to.
+      parameters:
+      - name: limit
+        in: query
+        description: 'Max results per page (default: 50, max: 200)'
+        schema:
+          type: integer
+          default: 50
+          maximum: 200
+      - name: cursor
+        in: query
+        description: Pagination cursor from previous response
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of projects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createProject
+      tags:
+      - Projects
+      summary: Create a project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - description
+              - timezone
+              - unitSystem
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                timezone:
+                  type: string
+                unitSystem:
+                  type: string
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /projects/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Project ID
+      schema:
+        type: string
+    get:
+      operationId: getProject
+      tags:
+      - Projects
+      summary: Retrieve a project
+      responses:
+        '200':
+          description: Project object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    patch:
+      operationId: updateProject
+      tags:
+      - Projects
+      summary: Update project metadata
+      description: Partially update project metadata; only included fields are modified.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                unitSystem:
+                  type: string
+      responses:
+        '200':
+          description: Updated project object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    delete:
+      operationId: deleteProject
+      tags:
+      - Projects
+      summary: Delete a project
+      description: Deleting a project permanently removes all associated wells, production data, dashboards, and surfaces.
+      responses:
+        '204':
+          description: Project deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    Forbidden:
+      description: Token lacks required scope
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        timezone:
+          type: string
+        unitSystem:
+          type: string
+        wellCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            requestId:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token issued from the Tachapps UI (Settings -> API Tokens), sent as `Authorization: Bearer tach_live_...`. Tokens carry scopes (read:projects, read:wells, read:production, write:projects, write:wells, admin).'
+x-apievangelist:
+  generated: '2026-07-21'
+  method: generated
+  source: Faithfully transcribed from the published Tachapps API reference at https://docs.tachyus.com/api/ (introduction, authentication, projects, wells, production-data). No fields invented; only documented operations, parameters, and response fields are represented.
