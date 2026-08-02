@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tachyus-tachapps-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Auth is Bearer personal-access-token, not OAuth2 authorization flows.
+  - id: bearer-token-auth
+    conforms: true
+    evidence: securityScheme type http scheme bearer (Authorization header).
+  - id: token-scopes
+    conforms: true
+    evidence: Tokens carry granular scopes (read:*/write:*/admin).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'Errors use a custom { error: { code, message, requestId } } envelope, not application/problem+json.'
+  - id: cursor-pagination
+    conforms: true
+    evidence: limit/cursor request params, nextCursor/total response fields.
+  - id: rfc6585-rate-limiting
+    conforms: true
+    evidence: 429 Too Many Requests with Retry-After header.
+  - id: idempotency-key
+    conforms: false
+    evidence: No Idempotency-Key header documented.
+  - id: json-api
+    conforms: false
+    evidence: Plain JSON with a data[] envelope; not JSON:API media type or structure.

@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/introduction.html
+docs: https://docs.tachyus.com/api/introduction.html
+authentication:
+  style: bearer-token
+  header: Authorization
+  ref: authentication/tachyus-authentication.yml
+transport:
+  https_required: true
+  content_type: application/json
+  request_bodies: 'JSON with Content-Type: application/json'
+versioning:
+  scheme: uri-path
+  current: v1
+  policy: Breaking changes are introduced only in new major versions with advance notice.
+  ref: lifecycle/tachyus-lifecycle.yml
+pagination:
+  style: cursor
+  request_params: [limit, cursor]
+  response_fields: [nextCursor, total]
+  data_envelope: data[]
+  defaults:
+    projects: { limit_default: 50, limit_max: 200 }
+    wells: { limit_default: 100 }
+error_envelope:
+  shape: '{ "error": { "code": string, "message": string, "requestId": string } }'
+  fields: [code, message, requestId]
+  ref: errors/tachyus-error-codes.yml
+rate_limit_signaling:
+  status_code: 429
+  retry_after_header: Retry-After
+  ref: rate-limits/tachyus-rate-limits.yml
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header is documented. Production-record ingestion
+    (POST .../production) is inherently idempotent per date — existing records
+    for the same date are upserted (replaced) — but there is no general
+    idempotency-key contract for create endpoints.
+request_tracing:
+  request_id_field: requestId (returned inside the error envelope)

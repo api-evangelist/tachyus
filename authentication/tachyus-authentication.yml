@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/authentication.html
+docs: https://docs.tachyus.com/api/authentication.html
+summary:
+  types: [http]
+  scheme: bearer
+  token_style: personal-access-token
+  token_prefix: tach_live_
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    description: >-
+      Bearer API token sent in the Authorization header as
+      `Authorization: Bearer tach_live_...`. Tokens are generated from the
+      Tachapps UI (Settings -> API Tokens): name the token, optionally set an
+      expiration date, generate and copy it once (not displayable afterward).
+      Tokens can be revoked at any time and should be rotated regularly.
+    sources: [openapi/tachyus-tachapps-openapi.yml]
+token_management:
+  issue: Settings -> API Tokens -> Generate New Token
+  expiration: optional per-token expiration date
+  revoke: Settings -> API Tokens -> Revoke
+  storage_guidance: store in environment variables / secrets manager, never in source control
+scopes:
+  - read:projects
+  - read:wells
+  - read:production
+  - write:projects
+  - write:wells
+  - admin
+errors:
+  - status: 401
+    code: UNAUTHORIZED
+    meaning: Token missing or invalid
+  - status: 403
+    code: FORBIDDEN
+    meaning: Token lacks required scope
+  - status: 429
+    code: RATE_LIMITED
+    meaning: Rate limit exceeded

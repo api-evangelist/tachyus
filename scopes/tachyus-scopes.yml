@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/authentication.html
+docs: https://docs.tachyus.com/api/authentication.html
+model: token-scopes
+note: >-
+  Scopes are assigned to API tokens (Bearer personal-access-token model), not
+  granted via OAuth2 authorization flows. Listed verbatim from the Tachapps
+  authentication reference.
+scopes:
+  - scope: read:projects
+    description: List and read projects
+  - scope: read:wells
+    description: List and read wells
+  - scope: read:production
+    description: Read production data
+  - scope: write:projects
+    description: Create and update projects
+  - scope: write:wells
+    description: Create and update wells
+  - scope: admin
+    description: Full access

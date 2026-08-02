@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/tachyus-tachapps-openapi.yml
+note: >-
+  No official hosted/remote MCP server was found for Tachyus. This is a
+  candidate tool list derived one-to-one from the documented Tachapps API
+  operations, offered as a starting point for an MCP server.
+server:
+  name: tachyus-tachapps
+  transport: http
+tools:
+  - name: list_projects
+    description: List projects the authenticated user can access
+    source_operation: openapi/tachyus-tachapps-openapi.yml#listProjects
+  - name: create_project
+    description: Create a new project
+    source_operation: openapi/tachyus-tachapps-openapi.yml#createProject
+  - name: get_project
+    description: Retrieve a project by ID
+    source_operation: openapi/tachyus-tachapps-openapi.yml#getProject
+  - name: update_project
+    description: Update project metadata
+    source_operation: openapi/tachyus-tachapps-openapi.yml#updateProject
+  - name: delete_project
+    description: Delete a project and all associated data
+    source_operation: openapi/tachyus-tachapps-openapi.yml#deleteProject
+  - name: list_wells
+    description: List wells in a project
+    source_operation: openapi/tachyus-tachapps-openapi.yml#listWells
+  - name: create_well
+    description: Create a well in a project
+    source_operation: openapi/tachyus-tachapps-openapi.yml#createWell
+  - name: get_well
+    description: Get a well by ID
+    source_operation: openapi/tachyus-tachapps-openapi.yml#getWell
+  - name: update_well
+    description: Update well attributes
+    source_operation: openapi/tachyus-tachapps-openapi.yml#updateWell
+  - name: delete_well
+    description: Delete a well and its production data
+    source_operation: openapi/tachyus-tachapps-openapi.yml#deleteWell
+  - name: get_production_data
+    description: Get production data for a well over a date range
+    source_operation: openapi/tachyus-tachapps-openapi.yml#getProductionData
+  - name: ingest_production_data
+    description: Ingest (upsert) production records for a well
+    source_operation: openapi/tachyus-tachapps-openapi.yml#ingestProductionData
+  - name: delete_production_data
+    description: Delete production records for a well by date range
+    source_operation: openapi/tachyus-tachapps-openapi.yml#deleteProductionData

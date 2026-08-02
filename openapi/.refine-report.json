@@ -1,0 +1,18 @@
+{
+  "provider": "tachyus",
+  "sources": [
+    "tachyus-production-data-api-openapi.yml",
+    "tachyus-projects-api-openapi.yml",
+    "tachyus-wells-api-openapi.yml"
+  ],
+  "outputs": [
+    "tachyus-production-data-api-openapi.yml",
+    "tachyus-projects-api-openapi.yml",
+    "tachyus-wells-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

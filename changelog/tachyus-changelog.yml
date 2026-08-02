@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/changelog.html
+docs: https://docs.tachyus.com/changelog.html
+scheme: semver
+format: keep-a-changelog
+current_version: 2.4.0
+entries:
+  - version: Unreleased
+    date: null
+    added:
+      - Probabilistic P10/P50/P90 forecast outputs
+      - Dashboard PDF export with custom header/footer
+  - version: 2.4.0
+    date: '2026-03-15'
+    added:
+      - Linked charts for synchronized X-axis zoom/pan
+      - KPI trend indicator
+      - Surface colorscale editor
+    changed:
+      - Tooltip values now respect Y-axis number format settings
+    fixed:
+      - Chart widgets handle missing daily records correctly
+      - Table widget CSV export includes column headers
+  - version: 2.3.1
+    date: '2026-02-01'
+    fixed:
+      - Race condition causing stale widget data after date range changes
+      - Surface upload failures for large ZMAP+ files
+  - version: 2.3.0
+    date: '2026-01-10'
+    added:
+      - Waterflood pattern analysis in Reservoir Models
+      - REST API DELETE endpoint
+    changed:
+      - Dashboard auto-refresh uses WebSocket push
+      - API rate limit increased to 300 req/min
+    deprecated:
+      - /api/v0/ endpoints
+  - version: 2.2.0
+    date: '2025-11-20'
+    added:
+      - Data-driven forecasting via type curve matching
+      - GeoTIFF surface format support
+      - Configurable dashboard auto-refresh intervals
+    fixed:
+      - Incorrect cumulative calculations for wells with non-contiguous history
+  - version: 2.1.0
+    date: '2025-09-05'
+    added:
+      - Normalization options in Production Analytics
+      - Conditional formatting for Table widgets
+    changed:
+      - DCA auto-fit speed improved by 60%
+  - version: 2.0.0
+    date: '2025-06-01'
+    added:
+      - Dashboard redesign with 12-column grid
+      - KPI and mini-widget types
+      - Combo charts
+      - REST API v1
+    removed:
+      - Legacy dashboard builder

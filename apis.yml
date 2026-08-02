@@ -1,20 +1,90 @@
 aid: tachyus
-name: tachyus
-description: tachyus is a company surfaced as a portfolio company of slow-ventures and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tachyus.png
+name: Tachyus
+description: >-
+  Tachyus provides AI-powered operational optimization and greenhouse-gas
+  emissions management software for the energy and industrial sectors,
+  combining data, reservoir physics, and machine learning. Its Tachapps
+  platform spans Strateon (production and injection allocation), Aqueon
+  (conventional reservoir management and optimization), and Aurion (GHG
+  emissions accounting, monitoring, forecasting, and regulatory reporting).
+  The Tachapps REST API (v1) is organized around Projects, Wells, and
+  Production Data, using Bearer API-token authentication with scopes, JSON
+  over HTTPS, cursor-based pagination, and per-plan rate limits.
 url: https://raw.githubusercontent.com/api-evangelist/tachyus/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - slow-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Energy
+- Oil and Gas
+- Reservoir Management
+- Production Optimization
+- Emissions Management
+- Machine Learning
+- Analytics
+apis:
+- aid: tachyus:tachyus-production-data-api
+  name: Tachyus Production Data API
+  description: Daily/monthly production records for a well.
+  humanURL: https://docs.tachyus.com/api/introduction.html
+  baseURL: https://your-organization.tachyus.com/api/v1
+  tags:
+  - Production Data
+  properties:
+  - type: OpenAPI
+    url: openapi/tachyus-production-data-api-openapi.yml
+  - type: APIReference
+    url: https://docs.tachyus.com/api/introduction.html
+  - type: Documentation
+    url: https://docs.tachyus.com/
+- aid: tachyus:tachyus-projects-api
+  name: Tachyus Projects API
+  description: Projects map to a specific geographic or operational asset.
+  humanURL: https://docs.tachyus.com/api/introduction.html
+  baseURL: https://your-organization.tachyus.com/api/v1
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/tachyus-projects-api-openapi.yml
+  - type: APIReference
+    url: https://docs.tachyus.com/api/introduction.html
+  - type: Documentation
+    url: https://docs.tachyus.com/
+- aid: tachyus:tachyus-wells-api
+  name: Tachyus Wells API
+  description: Wells belong to projects.
+  humanURL: https://docs.tachyus.com/api/introduction.html
+  baseURL: https://your-organization.tachyus.com/api/v1
+  tags:
+  - Wells
+  properties:
+  - type: OpenAPI
+    url: openapi/tachyus-wells-api-openapi.yml
+  - type: APIReference
+    url: https://docs.tachyus.com/api/introduction.html
+  - type: Documentation
+    url: https://docs.tachyus.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +93,50 @@ maintainers:
 common:
 - type: Website
   url: https://tachyus.com
+- type: DeveloperPortal
+  url: https://docs.tachyus.com/
+- type: Documentation
+  url: https://docs.tachyus.com/
+- type: APIReference
+  url: https://docs.tachyus.com/api/introduction.html
+- type: GettingStarted
+  url: https://docs.tachyus.com/guide/getting-started.html
+- type: GitHubOrganization
+  url: https://github.com/Tachyus
+- type: PrivacyPolicy
+  url: https://www.tachyus.com/_files/ugd/3ab73f_d653d64a6d4640b3a35762afb01ac3ef.pdf
+- type: ChangeLog
+  url: changelog/tachyus-changelog.yml
+- type: Authentication
+  url: authentication/tachyus-authentication.yml
+- type: OAuthScopes
+  url: scopes/tachyus-scopes.yml
+- type: RateLimits
+  url: rate-limits/tachyus-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/tachyus-error-codes.yml
+- type: Conventions
+  url: conventions/tachyus-conventions.yml
+- type: Lifecycle
+  url: lifecycle/tachyus-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/tachyus-lifecycle.yml
+- type: MCPServer
+  url: mcp/tachyus-mcp.yml
+- type: DataModel
+  url: data-model/tachyus-data-model.yml
+- type: Overlay
+  url: overlays/tachyus-tachapps-overlay.yaml
+- type: Conformance
+  url: conformance/tachyus-conformance.yml
+- type: DomainSecurity
+  url: security/tachyus-domain-security.yml
+- type: LLMsTxt
+  url: llms/tachyus-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

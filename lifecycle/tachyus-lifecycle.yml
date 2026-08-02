@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/introduction.html
+versioning:
+  scheme: uri-path
+  current: v1
+  policy: Breaking changes are introduced only in new major versions with advance notice.
+  docs: https://docs.tachyus.com/api/introduction.html
+deprecation:
+  policy: Major-version cadence; prior major API paths are deprecated when a new major ships.
+  deprecated_paths:
+    - path: /api/v0/
+      announced: '2026-01-10'
+      source: changelog 2.3.0 (Deprecated /api/v0/ endpoints)
+  docs: https://docs.tachyus.com/changelog.html
+changelog:
+  url: https://docs.tachyus.com/changelog.html
+  ref: changelog/tachyus-changelog.yml
+status_page: null
+sla: null

@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/introduction.html
+docs: https://docs.tachyus.com/api/introduction.html
+signal:
+  status_code: 429
+  error_code: RATE_LIMITED
+  retry_after_header: Retry-After
+unit: requests-per-minute
+rate_limits:
+  - plan: Standard
+    limit_count: 60
+    burst: 120
+    window: minute
+  - plan: Professional
+    limit_count: 300
+    burst: 600
+    window: minute
+  - plan: Enterprise
+    limit_count: 1000
+    burst: 2000
+    window: minute
+history:
+  - date: '2026-01-10'
+    note: API rate limit increased to 300 req/min (changelog 2.3.0)

@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tachyus-tachapps-openapi.yml
+entities:
+  - name: Project
+    id_field: id
+    fields: [name, description, timezone, unitSystem, wellCount, createdAt, updatedAt]
+    relationships:
+      - kind: has_many
+        target: Well
+        via: projectId
+  - name: Well
+    id_field: id
+    fields: [projectId, name, apiNumber, type, status, latitude, longitude, spudDate, firstProductionDate, lateralLength, perfInterval, createdAt]
+    relationships:
+      - kind: belongs_to
+        target: Project
+        via: projectId
+      - kind: has_many
+        target: ProductionRecord
+        via: wellId
+  - name: ProductionRecord
+    id_field: date
+    fields: [date, oil_rate, water_rate, gas_rate, bhp, thp, choke_size, runtime, gor, watercut]
+    relationships:
+      - kind: belongs_to
+        target: Well
+        via: wellId
+    note: >-
+      Records are keyed by (wellId, date) and upserted on ingest — no surrogate
+      id; the natural key is the production date.

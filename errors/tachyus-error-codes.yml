@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tachyus.com/api/introduction.html
+docs:
+  - https://docs.tachyus.com/api/introduction.html
+  - https://docs.tachyus.com/api/authentication.html
+format: custom-envelope
+envelope:
+  shape: '{ "error": { "code": string, "message": string, "requestId": string } }'
+  fields:
+    code: Machine-readable error code
+    message: Human-readable description
+    requestId: Correlation id for support / tracing
+error_codes:
+  - status: 401
+    code: UNAUTHORIZED
+    title: Token missing or invalid
+    remediation: Provide a valid Bearer token in the Authorization header.
+  - status: 403
+    code: FORBIDDEN
+    title: Token lacks required scope
+    remediation: Issue a token with the required scope (e.g. write:wells).
+  - status: 429
+    code: RATE_LIMITED
+    title: Rate limit exceeded
+    remediation: Back off and retry after the interval in the Retry-After header.

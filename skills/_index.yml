@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/tachyus-tachapps-openapi.yml
+skills:
+  - file: tachyus-onboard-project-and-wells.md
+    name: Onboard a project and its wells
+    api: openapi/tachyus-tachapps-openapi.yml
+    operations: [createProject, createWell, listWells, getWell]
+  - file: tachyus-ingest-and-read-production.md
+    name: Ingest and read well production data
+    api: openapi/tachyus-tachapps-openapi.yml
+    operations: [ingestProductionData, getProductionData, deleteProductionData]
