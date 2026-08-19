@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tachapps Production Data Wells API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wells",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wells in a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (default: 100)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by well name or API number"
+              }
+            ]
+          },
+          "docs": "List wells in a project"
+        },
+        {
+          "info": {
+            "name": "Create a well",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a well"
+        },
+        {
+          "info": {
+            "name": "Get a well by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a well by ID"
+        },
+        {
+          "info": {
+            "name": "Update well attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update well attributes. Only included fields are modified."
+        },
+        {
+          "info": {
+            "name": "Delete a well",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the well and all associated production data. This action cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

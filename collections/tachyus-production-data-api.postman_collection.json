@@ -1,0 +1,1160 @@
+{
+  "item": [
+    {
+      "id": "a246841c-b82f-4879-b20d-d3b3ad8a5643",
+      "name": "Production Data",
+      "description": {
+        "content": "Daily/monthly production records for a well.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0187369-d2c8-4607-8663-cd03af259a08",
+          "name": "Get production data for a well",
+          "request": {
+            "name": "Get production data for a well",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "wells",
+                ":wellId",
+                "production"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "(Required) Start date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "(Required) End date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation",
+                  "value": "daily",
+                  "description": "Daily (default) or monthly aggregation"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wellId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Tachapps organization subdomain",
+                  "type": "any",
+                  "value": "{{organization}}",
+                  "key": "organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8ae9b72-b0fa-4321-886b-273891e8a5cf",
+              "name": "Production data series",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation",
+                      "value": "daily"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"wellId\": \"string\",\n  \"from\": \"1994-11-12\",\n  \"to\": \"2010-01-14\",\n  \"aggregation\": \"string\",\n  \"fields\": [\n    \"string\",\n    \"string\"\n  ],\n  \"data\": [\n    {\n      \"date\": \"1962-04-30\",\n      \"oil_rate\": 8615.470367020525,\n      \"water_rate\": 2476.8499306770755,\n      \"gas_rate\": 2284.2076345345454,\n      \"bhp\": 7501.911728900679,\n      \"thp\": 1818.2612929384877,\n      \"choke_size\": 8474.019924841175,\n      \"runtime\": 2663.500125163205,\n      \"gor\": 6739.541311833506,\n      \"watercut\": 4400.198446668919\n    },\n    {\n      \"date\": \"2007-02-04\",\n      \"oil_rate\": 9305.404168569636,\n      \"water_rate\": 1822.694636969896,\n      \"gas_rate\": 7777.38396738607,\n      \"bhp\": 9045.042978129584,\n      \"thp\": 4533.928767318324,\n      \"choke_size\": 4187.3441526087545,\n      \"runtime\": 555.0334378638788,\n      \"gor\": 6121.334061243397,\n      \"watercut\": 1831.7459597311959\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7344352-e0b9-41a5-a0fa-f1cb45cbfd6e",
+              "name": "Token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation",
+                      "value": "daily"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc4daed0-64a0-424d-afdf-8a431e7d5d5f",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation",
+                      "value": "daily"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying",
+                  "key": "Retry-After",
+                  "value": "5137"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "803bfccf-e920-4084-93e0-b3fb79d2981d",
+          "name": "Ingest production records",
+          "request": {
+            "name": "Ingest production records",
+            "description": {
+              "content": "Existing records for the same date are upserted (replaced). For historical imports exceeding thousands of records, CSV import or bulk data migration is recommended.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "wells",
+                ":wellId",
+                "production"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wellId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Tachapps organization subdomain",
+                  "type": "any",
+                  "value": "{{organization}}",
+                  "key": "organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"records\": [\n    {\n      \"date\": \"<date>\",\n      \"oil_rate\": \"<number>\",\n      \"water_rate\": \"<number>\",\n      \"gas_rate\": \"<number>\",\n      \"bhp\": \"<number>\",\n      \"thp\": \"<number>\",\n      \"choke_size\": \"<number>\",\n      \"runtime\": \"<number>\",\n      \"gor\": \"<number>\",\n      \"watercut\": \"<number>\"\n    },\n    {\n      \"date\": \"<date>\",\n      \"oil_rate\": \"<number>\",\n      \"water_rate\": \"<number>\",\n      \"gas_rate\": \"<number>\",\n      \"bhp\": \"<number>\",\n      \"thp\": \"<number>\",\n      \"choke_size\": \"<number>\",\n      \"runtime\": \"<number>\",\n      \"gor\": \"<number>\",\n      \"watercut\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc01f408-ee39-496c-a2a6-bb1967e20964",
+              "name": "Ingest result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"date\": \"1958-02-01\",\n      \"oil_rate\": 3490.7451788854905,\n      \"water_rate\": 977.6773968433283,\n      \"gas_rate\": 2526.978493765736,\n      \"bhp\": 2007.6446697991435,\n      \"thp\": 6202.3597281868515,\n      \"choke_size\": 6637.860580446092,\n      \"runtime\": 405.41966702804524,\n      \"gor\": 247.9433282481469,\n      \"watercut\": 1516.7402863219427\n    },\n    {\n      \"date\": \"2025-08-24\",\n      \"oil_rate\": 2773.61090090663,\n      \"water_rate\": 6352.122456376168,\n      \"gas_rate\": 1348.9202802295197,\n      \"bhp\": 7601.419234160612,\n      \"thp\": 3958.3653900542117,\n      \"choke_size\": 3663.055711275207,\n      \"runtime\": 6022.896145619197,\n      \"gor\": 9226.006519550547,\n      \"watercut\": 2960.1946766281994\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inserted\": 7014,\n  \"updated\": 7630,\n  \"total\": 6732\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1001f8bc-736d-4c45-89b8-b39106cd5c6a",
+              "name": "Token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"date\": \"1958-02-01\",\n      \"oil_rate\": 3490.7451788854905,\n      \"water_rate\": 977.6773968433283,\n      \"gas_rate\": 2526.978493765736,\n      \"bhp\": 2007.6446697991435,\n      \"thp\": 6202.3597281868515,\n      \"choke_size\": 6637.860580446092,\n      \"runtime\": 405.41966702804524,\n      \"gor\": 247.9433282481469,\n      \"watercut\": 1516.7402863219427\n    },\n    {\n      \"date\": \"2025-08-24\",\n      \"oil_rate\": 2773.61090090663,\n      \"water_rate\": 6352.122456376168,\n      \"gas_rate\": 1348.9202802295197,\n      \"bhp\": 7601.419234160612,\n      \"thp\": 3958.3653900542117,\n      \"choke_size\": 3663.055711275207,\n      \"runtime\": 6022.896145619197,\n      \"gor\": 9226.006519550547,\n      \"watercut\": 2960.1946766281994\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1823060-51eb-4fe3-8644-7e0e1271bab0",
+              "name": "Token lacks required scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"date\": \"1958-02-01\",\n      \"oil_rate\": 3490.7451788854905,\n      \"water_rate\": 977.6773968433283,\n      \"gas_rate\": 2526.978493765736,\n      \"bhp\": 2007.6446697991435,\n      \"thp\": 6202.3597281868515,\n      \"choke_size\": 6637.860580446092,\n      \"runtime\": 405.41966702804524,\n      \"gor\": 247.9433282481469,\n      \"watercut\": 1516.7402863219427\n    },\n    {\n      \"date\": \"2025-08-24\",\n      \"oil_rate\": 2773.61090090663,\n      \"water_rate\": 6352.122456376168,\n      \"gas_rate\": 1348.9202802295197,\n      \"bhp\": 7601.419234160612,\n      \"thp\": 3958.3653900542117,\n      \"choke_size\": 3663.055711275207,\n      \"runtime\": 6022.896145619197,\n      \"gor\": 9226.006519550547,\n      \"watercut\": 2960.1946766281994\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ca3391d-f70c-4851-a811-9899c6c3f625",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"date\": \"1958-02-01\",\n      \"oil_rate\": 3490.7451788854905,\n      \"water_rate\": 977.6773968433283,\n      \"gas_rate\": 2526.978493765736,\n      \"bhp\": 2007.6446697991435,\n      \"thp\": 6202.3597281868515,\n      \"choke_size\": 6637.860580446092,\n      \"runtime\": 405.41966702804524,\n      \"gor\": 247.9433282481469,\n      \"watercut\": 1516.7402863219427\n    },\n    {\n      \"date\": \"2025-08-24\",\n      \"oil_rate\": 2773.61090090663,\n      \"water_rate\": 6352.122456376168,\n      \"gas_rate\": 1348.9202802295197,\n      \"bhp\": 7601.419234160612,\n      \"thp\": 3958.3653900542117,\n      \"choke_size\": 3663.055711275207,\n      \"runtime\": 6022.896145619197,\n      \"gor\": 9226.006519550547,\n      \"watercut\": 2960.1946766281994\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying",
+                  "key": "Retry-After",
+                  "value": "5137"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e665fe0-4c84-4b5e-83e2-7909fd67280c",
+          "name": "Delete production records by date range",
+          "request": {
+            "name": "Delete production records by date range",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "wells",
+                ":wellId",
+                "production"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "(Required) Start of range to delete (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "(Required) End of range to delete (inclusive)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wellId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Tachapps organization subdomain",
+                  "type": "any",
+                  "value": "{{organization}}",
+                  "key": "organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdc25c46-689b-44ae-8a76-790978c6791f",
+              "name": "Delete result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": 12\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "659fc7f4-e75c-48c4-a20d-9c931ddebaec",
+              "name": "Token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c29ac9a-b5c3-4050-b0a2-02ffc7b72ae7",
+              "name": "Token lacks required scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98dca667-d2c9-45e7-996c-d7d0f09eb56c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "wells",
+                    ":wellId",
+                    "production"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wellId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Tachapps organization subdomain",
+                      "type": "any",
+                      "value": "{{organization}}",
+                      "key": "organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying",
+                  "key": "Retry-After",
+                  "value": "5137"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"requestId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Tachapps organization subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-organization",
+      "key": "organization"
+    },
+    {
+      "type": "string",
+      "value": "https://{{organization}}.tachyus.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a46a128-33d0-4023-8d42-9c124e8802eb",
+    "name": "Tachapps Production Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Tachyus Tachapps platform (Strateon, Aqueon, Aurion) — reservoir management, production analytics, and forecasting. The API is organized around Projects, Wells, and Production Data. All requests use HTTPS and JSON. Authentication is a Bearer API token issued from the Tachapps UI (Settings -> API Tokens). Breaking changes are introduced only in new major versions with advance notice.\n\nContact Support:\n Name: Tachyus\n Email: info@tachyus.com",
+      "type": "text/plain"
+    }
+  }
+}

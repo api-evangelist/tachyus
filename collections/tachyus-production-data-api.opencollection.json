@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tachapps Production Data API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Production Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get production data for a well",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId/production",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start date (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End date (inclusive)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              },
+              {
+                "name": "aggregation",
+                "value": "",
+                "type": "query",
+                "description": "Daily (default) or monthly aggregation"
+              }
+            ]
+          },
+          "docs": "Get production data for a well"
+        },
+        {
+          "info": {
+            "name": "Ingest production records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId/production",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Existing records for the same date are upserted (replaced). For historical imports exceeding thousands of records, CSV import or bulk data migration is recommended."
+        },
+        {
+          "info": {
+            "name": "Delete production records by date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{organization}.tachyus.com/api/v1/projects/:projectId/wells/:wellId/production",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wellId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of range to delete (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of range to delete (inclusive)"
+              }
+            ]
+          },
+          "docs": "Delete production records by date range"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
