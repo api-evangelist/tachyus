@@ -40,6 +40,15 @@ tags:
 - Reservoir Management
 - Production Optimization
 - Emissions Management
+- Machine-Learning
+- Analytics
+tags_raw:
+- Company
+- Energy
+- Oil and Gas
+- Reservoir Management
+- Production Optimization
+- Emissions Management
 - Machine Learning
 - Analytics
 apis:
@@ -63,6 +72,8 @@ apis:
   humanURL: https://docs.tachyus.com/api/introduction.html
   baseURL: https://your-organization.tachyus.com/api/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
