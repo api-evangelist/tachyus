@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tachapps Production Data Projects API
+  title: Tachapps Projects API
   version: v1
   description: REST API for the Tachyus Tachapps platform (Strateon, Aqueon, Aurion) — reservoir management, production analytics, and forecasting. The API is organized around Projects, Wells, and Production Data. All requests use HTTPS and JSON. Authentication is a Bearer API token issued from the Tachapps UI (Settings -> API Tokens). Breaking changes are introduced only in new major versions with advance notice.
   contact:
@@ -171,30 +171,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    Forbidden:
-      description: Token lacks required scope
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Token missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate limit exceeded
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Project:
       type: object
@@ -229,6 +205,30 @@ components:
               type: string
             requestId:
               type: string
+  responses:
+    Forbidden:
+      description: Token lacks required scope
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
