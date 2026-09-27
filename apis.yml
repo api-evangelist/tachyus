@@ -54,7 +54,7 @@ tags:
 - Reservoir Management
 - Production Optimization
 - Emissions Management
-- Machine-Learning
+- Machine Learning
 - Analytics
 tags_raw:
 - Company
@@ -65,6 +65,7 @@ tags_raw:
 - Emissions Management
 - Machine Learning
 - Analytics
+- Machine-Learning
 apis:
 - aid: tachyus:tachyus-production-data-api
   name: Tachyus Production Data API
