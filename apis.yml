@@ -46,7 +46,7 @@ x-tier: profiled
 x-tier-reason: enriched-from-docs
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Energy
@@ -117,6 +117,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.tachyus.com/press
+  type: Blog
 - type: Website
   url: https://tachyus.com
 - type: DeveloperPortal
