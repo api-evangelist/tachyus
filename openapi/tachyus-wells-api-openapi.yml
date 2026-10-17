@@ -218,18 +218,6 @@ components:
               type: number
             bottomMd:
               type: number
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            requestId:
-              type: string
     Well:
       allOf:
       - $ref: '#/components/schemas/WellInput'
@@ -245,7 +233,30 @@ components:
           createdAt:
             type: string
             format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            requestId:
+              type: string
   responses:
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Forbidden:
       description: Token lacks required scope
       content:
@@ -254,17 +265,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Token missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate limit exceeded
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying
       content:
         application/json:
           schema:
